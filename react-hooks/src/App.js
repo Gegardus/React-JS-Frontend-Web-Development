@@ -1,34 +1,52 @@
-import React, {Component} from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">    
-//       </header>
-//     </div>
-//   );
-// }
+const App = () => {
+  const [count, setCount] = useState(0)
 
-class App extends Component {
-  
-  state = {
-    count: 0
-  };
+  // to handle side effect, i.e. state change
+  useEffect(() => {
+    document.title = `Clicked ${count} times`;
+  })
 
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  };
+  const increment = () => {
+    setCount(count + 1)
+  }  
 
-  render() {
-    return(
-      <div>
+  return (
+    <div>
       <h2>Counter App</h2>
-      <button onClick={this.increment}>Clicked {this.state.count} times</button>
-      </div>
-    )
-  }
+      <button onClick={increment}>Clicked {count} times</button>
+    </div>
+  );
 }
+
+// class App extends Component {  
+//   state = {
+//     count: 0
+//   };
+
+//   increment = () => {
+//     this.setState({
+//       count: this.state.count + 1
+//     });
+//   };
+
+//   componentDidMount() {
+//     document.title = `Clicked ${this.state.count} times`;
+//   }
+
+//   componentDidUpdate() {
+//     document.title = `Clicked ${this.state.count} times`;
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//       <h2>Counter App</h2>
+//       <button onClick={this.increment}>Clicked {this.state.count} times</button>
+//       </div>
+//     )
+//   }
+// }
 
 export default App;
